@@ -11,20 +11,20 @@ All work has been developed collaboratively and tracked using GitHub version con
 ```text
 HIT137-Assignment-2/
 ├── question_1/
-│   ├── text_encryption.py
-│   ├── raw_text.txt
+│   ├── decrypted_text.txt
 │   ├── encrypted_text.txt
-│   └── decrypted_text.txt
+│   ├── question1_encryption.py
+│   └── raw_text.txt
 │
 ├── question_2/
-│   ├── temperature_analysis.py
 │   ├── temperatures/
 │   ├── average_temp.txt
 │   ├── largest_temp_range_station.txt
+│   ├── question2_temperature_analysis.py
 │   └── temperature_stability_stations.txt
 │
 ├── question_3/
-│   └── turtle_pattern.py
+│   └── question3_turtle_pattern.py
 │
 ├── github_link.txt
 └── README.md
