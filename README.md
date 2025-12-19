@@ -1,4 +1,4 @@
-# Group20_HIT137_Assignment_2
+# HIT137-Group-Assignment-2
 CDU HIT137 Group 20 Assignment 2 
 
 This repository contains the group submission for HIT137 Assignment 2.
@@ -9,7 +9,7 @@ All work has been developed collaboratively and tracked using GitHub version con
 ## Repository Structure
 
 ```text
-HIT137-Assignment-2/
+HIT137-Group-Assignment-2/
 ├── question_1/
 │   ├── decrypted_text.txt
 │   ├── encrypted_text.txt
@@ -26,8 +26,8 @@ HIT137-Assignment-2/
 ├── question_3/
 │   └── question3_turtle_pattern.py
 │
-├── github_link.txt
-└── README.md
+├── README.md
+└── github_link.txt
 ```
 
 ## Question 1 – Text Encryption and Decryption
