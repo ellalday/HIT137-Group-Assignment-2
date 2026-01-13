@@ -2,20 +2,20 @@
 HIT137 – Group Assignment 2
 Question 1: Text Encryption / Decryption / Verification
 """
-
+# Importing Path to make working with file paths easier
 from pathlib import Path
-
+# Setting the base directory for input and output files
 BASE_DIR = Path(__file__).parent
 RAW_FILE = BASE_DIR / "raw_text.txt"
 ENC_FILE = BASE_DIR / "encrypted_text.txt"
 DEC_FILE = BASE_DIR / "decrypted_text.txt"
 
-
+# Defines function for handling single letter shifting in the alphabet with wrap-around
 def shift_letter(ch: str, base: str, amount: int) -> str:
     """Shift a letter by amount with wrap-around inside alphabet."""
     return chr(ord(base) + ((ord(ch) - ord(base) + amount) % 26))
 
-
+# Defines function for selection of encryption rule for a given character
 def rule_code(ch: str) -> int:
     """
     Identify which rule applies to the ORIGINAL character.
@@ -35,7 +35,7 @@ def rule_code(ch: str) -> int:
         return 3
     return 4
 
-
+# Applies encryption rules to a single character
 def encrypt_char(ch: str, shift1: int, shift2: int) -> str:
     # Lowercase letters
     if "a" <= ch <= "z":
@@ -52,7 +52,7 @@ def encrypt_char(ch: str, shift1: int, shift2: int) -> str:
     # Other characters unchanged
     return ch
 
-
+# Reverses the encryption of one character using its original rule
 def decrypt_char(enc_ch: str, code: int, shift1: int, shift2: int) -> str:
     """Decrypt one character using the ORIGINAL rule code (stored in memory)."""
     if code == 0:   # was lowercase a-m, forward by shift1*shift2
@@ -63,9 +63,9 @@ def decrypt_char(enc_ch: str, code: int, shift1: int, shift2: int) -> str:
         return shift_letter(enc_ch, "A", shift1)
     if code == 3:   # was uppercase N-Z, forward by shift2^2
         return shift_letter(enc_ch, "A", -(shift2 ** 2))
-    return enc_ch   # other chars unchanged
+    return enc_ch   # non-alphabet letters remain unchanged
 
-
+# keep prompting until a valid shift value is entered
 def get_shift(prompt: str) -> int:
     """Get a shift value between 0 and 9 inclusive."""
     while True:
@@ -78,7 +78,7 @@ def get_shift(prompt: str) -> int:
             return n
         print("Shift must be between 0 and 9 (inclusive).")
 
-
+# check decrpyted output against original input and report differences
 def verify_decryption(raw_text: str, decrypted_text: str) -> None:
     if raw_text == decrypted_text:
         print("Verification: SUCCESS ✅ Decrypted text matches the original.")
@@ -94,7 +94,7 @@ def verify_decryption(raw_text: str, decrypted_text: str) -> None:
             if len(raw_text) != len(decrypted_text):
                 print(f"Files differ in length: original={len(raw_text)} decrypted={len(decrypted_text)}")
 
-
+# coordinate the full encryption, decyption and verification workflow
 def main() -> None:
     if not RAW_FILE.exists():
         print("ERROR: raw_text.txt not found in the same folder as this script.")
