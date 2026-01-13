@@ -1,5 +1,5 @@
 import turtle
-
+# uses turtle graphics to draw a recursive Koch style pattern
 """
 Purpose:
 - Draw a polygon where each side is a Koch-style curve with an inward indentation.
@@ -17,7 +17,7 @@ How it works:
 """
 
 MAX_DEPTH = 7  # This prevents very slow drawings/freezing at high depth
-
+# recursively draws a Koch style curve with an inward indentation
 def koch_inward(length, depth):
     """Draw a Koch-style curve segment with an inward equilateral indentation."""
     if depth == 0:
@@ -42,7 +42,7 @@ def draw_polygon(sides, length, depth):
     for _ in range(sides):
         koch_inward(length, depth)
         turtle.right(exterior_angle)
-
+# get and validate user input
 def get_inputs():
     # Read and validate user input.
     sides = int(input("Enter the number of sides (>= 3): "))
@@ -60,7 +60,7 @@ def get_inputs():
 
     return sides, length, depth
 
-
+# main program entry point
 def main():
     try:
         sides, length, depth = get_inputs()
