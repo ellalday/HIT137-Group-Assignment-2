@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 import numpy as np
-
+# load and analyse temperature data from multiple csv files
 TEMPERATURES_FOLDER = "temperatures"
 
 MONTHS = [
@@ -16,7 +16,7 @@ SEASONS = {
     "Spring": ["September", "October", "November"]
 }
 
-
+# read and combine all CSV files in the temeratures folder into a single Data Frame
 def load_all_data():
     frames = []
     if not os.path.isdir(TEMPERATURES_FOLDER):
@@ -37,6 +37,7 @@ def load_all_data():
 def calculate_seasonal_averages(df):
     with open("average_temp.txt", "w", encoding="utf-8") as f:
         for season, months in SEASONS.items():
+            # flatten month columns so seasonal averages are calculated across all stations and years
             temps = pd.to_numeric(df[months].values.flatten(), errors="coerce")
             temps = temps[~np.isnan(temps)]
             if len(temps) == 0:
@@ -79,7 +80,7 @@ def calculate_temperature_ranges(df):
             if np.isclose(rng, max_range):
                 f.write(f"{station}: Range {rng:.1f}°C (Max: {mx:.1f}°C, Min: {mn:.1f}°C)\n")
 
-
+# identify the most stable and most variable stations using standard deviation
 def calculate_temperature_stability(df):
     station_temps = {}
 
@@ -112,7 +113,7 @@ def calculate_temperature_stability(df):
             if np.isclose(sd, max_sd):
                 f.write(f"Most Variable: {st}: StdDev {sd:.1f}°C\n")
 
-
+# main program entry point
 def main():
     df = load_all_data()
 
